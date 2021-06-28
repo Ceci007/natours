@@ -54,6 +54,9 @@ const sendErrorProd = (err, req, res) => {
         status: err.status,
         message: err.message
       });
+      window.setTimeout(() => {
+        location.push('/');
+      }, 500);
     }
     // B) Programming or other unknown error: don't leak error details
     // 1) Log error
@@ -73,6 +76,9 @@ const sendErrorProd = (err, req, res) => {
       title: 'Something went wrong!',
       msg: err.message
     });
+    window.setTimeout(() => {
+      location.push('/');
+    }, 500);
   }
   // B) Programming or other unknown error: don't leak error details
   // 1) Log error
