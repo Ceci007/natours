@@ -55,7 +55,7 @@ const sendErrorProd = (err, req, res) => {
         message: err.message
       });
       window.setTimeout(() => {
-        location.push('/');
+        window.location.replace('/');
       }, 500);
     }
     // B) Programming or other unknown error: don't leak error details
@@ -77,7 +77,7 @@ const sendErrorProd = (err, req, res) => {
       msg: err.message
     });
     window.setTimeout(() => {
-      location.push('/');
+      window.location.replace('/');
     }, 500);
   }
   // B) Programming or other unknown error: don't leak error details

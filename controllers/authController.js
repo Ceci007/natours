@@ -44,6 +44,12 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm
   });
 
+  const { name, email, password, passwordConfirm } = req.body;
+
+  if (!name || !email || !password || !passwordConfirm) {
+    return next(new AppError('Please provide all fields', 400));
+  }
+
   createSendToken(newUser, 201, res);
 });
 
