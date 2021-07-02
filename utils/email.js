@@ -11,16 +11,18 @@ module.exports = class Email {
   }
 
   newTransport() {
-    /*if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       // Sendgrid
       return nodemailer.createTransport({
         service: 'SendGrid',
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
         auth: {
-         user: process.env.SENDGRID_USERNAME,
+          user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD
         }
       });
-    }*/
+    }
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
@@ -35,9 +37,6 @@ module.exports = class Email {
   // Send the actual email
   async send(template, subject) {
     // 1) Render HTML based on a pug template
-    /*
-    `${__dirname}/../views/email/${template}.pug`
-    */
     let html = pug.renderFile(`${__dirname}/../views/email/${template}.pug`, {
       firstName: this.firstName,
       url: this.url,
